@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 
 CREATE TABLE IF NOT EXISTS books (
     book_name VARCHAR(150) PRIMARY KEY,
-    book_image VARCHAR(255) DEFAULT '',
+    book_image TEXT DEFAULT '',
     author_name VARCHAR(120) NOT NULL,
     available_quantity INT NOT NULL DEFAULT 0,
     publication_name VARCHAR(120) NOT NULL,
