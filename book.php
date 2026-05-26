@@ -55,7 +55,13 @@ render_header('Books');
         <tr>
             <td><?= h($book['book_name']) ?></td>
             <td><?= h($book['author_name']) ?></td>
-            <td><?= h($book['book_image']) ?></td>
+            <td>
+                <?php if ($book['book_image']): ?>
+                    <img src="<?= h($book['book_image']) ?>" alt="Book Cover" style="max-width: 60px; max-height: 80px; border-radius: 4px; object-fit: cover; display: block; margin: auto;">
+                <?php else: ?>
+                    <span class="muted" style="font-size: 0.85em; color: #888;">No Image</span>
+                <?php endif; ?>
+            </td>
             <td><?= h((string) $book['available_quantity']) ?></td>
             <td><?= h($book['publication_name']) ?></td>
             <td><a class="action-link delete-link" href="book.php?delete=<?= urlencode($book['book_name']) ?>">Delete</a></td>
