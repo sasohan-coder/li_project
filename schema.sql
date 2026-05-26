@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS allotments (
 );
 
 INSERT INTO users (email, name, pass)
-VALUES ('admin@example.com', 'Admin User', 'admin123')
+VALUES ('admin@example.com', 'Admin User', '$2y$10$wN/aX1vB6mYn8JdLoUxFvOu5L9yW9/hO8o1q.T1X8TzBf3gN5aJyG')
 ON DUPLICATE KEY UPDATE name = VALUES(name), pass = VALUES(pass);
 
 INSERT INTO subscriptions (title, amount, number_of_days)
