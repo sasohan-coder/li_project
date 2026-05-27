@@ -66,7 +66,6 @@ function render_header(string $title): void
             'purchase.php' => 'css/purchase-styles.css',
             'vendor.php' => 'css/vendor-styles.css',
             'subscription.php' => 'css/subscription-styles.css',
-            'session.php' => 'css/common.css',
         ];
         $style = $style_map[$page] ?? 'css/common.css';
         ?>
@@ -137,10 +136,6 @@ function render_header(string $title): void
             <a href="subscription.php" class="nav-item <?= $page === 'subscription.php' ? 'active' : '' ?>">
                 <i class="fas fa-file-invoice"></i>
                 <span>Subscription Type</span>
-            </a>
-            <a href="session.php" class="nav-item <?= $page === 'session.php' ? 'active' : '' ?>">
-                <i class="fas fa-key"></i>
-                <span>Session Demo</span>
             </a>
         </nav>
 
