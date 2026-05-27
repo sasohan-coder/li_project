@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 
 CREATE TABLE IF NOT EXISTS books (
     book_name VARCHAR(150) PRIMARY KEY,
-    book_image TEXT DEFAULT '',
+    book_image VARCHAR(255) DEFAULT '',
     author_name VARCHAR(120) NOT NULL,
     available_quantity INT NOT NULL DEFAULT 0,
     publication_name VARCHAR(120) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS allotments (
 );
 
 INSERT INTO users (email, name, pass)
-VALUES ('admin@example.com', 'Admin User', '$2y$10$wN/aX1vB6mYn8JdLoUxFvOu5L9yW9/hO8o1q.T1X8TzBf3gN5aJyG')
+VALUES ('admin@example.com', 'Admin User', 'admin123')
 ON DUPLICATE KEY UPDATE name = VALUES(name), pass = VALUES(pass);
 
 INSERT INTO subscriptions (title, amount, number_of_days)

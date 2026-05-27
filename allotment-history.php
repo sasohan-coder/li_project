@@ -31,32 +31,150 @@ $allotments = fetch_all('SELECT * FROM allotments ORDER BY id DESC');
 
 render_header('Allotment History');
 ?>
-<h2>Allotment History</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Book</th>
-        <th>Student Email</th>
-        <th>Subscription</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Allotment Date</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
-    <?php foreach ($allotments as $allotment): ?>
-        <?php $status = strtotime($allotment['end_date']) >= strtotime(date('Y-m-d')) ? 'Active' : 'Expired'; ?>
+<!-- Breadcrumb Header -->
+<div class="section-header">
+    <div class="breadcrumb">
+        <i class="fas fa-home"></i>
+        <span>/</span>
+        <span>Allotment History</span>
+    </div>
+</div>
+
+<!-- Table Controls -->
+<div class="table-controls">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search by book name or student email...">
+    </div>
+</div>
+
+<!-- Table Wrapper -->
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead>
         <tr>
-            <td><?= h((string) $allotment['id']) ?></td>
-            <td><?= h($allotment['book_name']) ?></td>
-            <td><?= h($allotment['student_email']) ?></td>
-            <td><?= h($allotment['subscription_title']) ?></td>
-            <td><?= h($allotment['start_date']) ?></td>
-            <td><?= h($allotment['end_date']) ?></td>
-            <td><?= h($allotment['allotment_date']) ?></td>
-            <td><?= h($status) ?></td>
-            <td><a class="action-link delete-link" href="allotment-history.php?delete=<?= (int) $allotment['id'] ?>">Delete</a></td>
+            <th>S.No.</th>
+            <th>Book Name</th>
+            <th>Student Email</th>
+            <th>Subscription Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Allotment Date</th>
+            <th>Status</th>
+            <th>Action</th>
         </tr>
-    <?php endforeach; ?>
-</table>
+        </thead>
+        <tbody>
+        <?php $idx = 1; foreach ($allotments as $allotment): ?>
+            <?php $statusActive = strtotime($allotment['end_date']) >= strtotime(date('Y-m-d')); ?>
+            <tr>
+                <td><?= $idx++ ?></td>
+                <td><?= h($allotment['book_name']) ?></td>
+                <td><?= h($allotment['student_email']) ?></td>
+                <td>
+                    <span class="subscription-badge"><?= h($allotment['subscription_title']) ?></span>
+                </td>
+                <td><?= h($allotment['start_date']) ?></td>
+                <td><?= h($allotment['end_date']) ?></td>
+                <td><?= h($allotment['allotment_date']) ?></td>
+                <td>
+                    <?php if ($statusActive): ?>
+                        <span class="status-badge active">
+                            <i class="fas fa-circle"></i> Active
+                        </span>
+                    <?php else: ?>
+                        <span class="status-badge expired">
+                            <i class="fas fa-circle"></i> Expired
+                        </span>
+                    <?php endif; ?>
+                </td>
+                <td class="action-cell">
+                    <button class="btn-action view" title="View Details">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <a href="allotment-history.php?delete=<?= (int) $allotment['id'] ?>" class="btn-action delete delete-link" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<!-- Summary Cards -->
+<div class="summary-section">
+    <div class="summary-card">
+        <div class="summary-icon active">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="summary-content">
+            <p class="summary-label">Active Allotments</p>
+            <p class="summary-value" id="activeCount">0</p>
+        </div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-icon expired">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="summary-content">
+            <p class="summary-label">Expired Allotments</p>
+            <p class="summary-value" id="expiredCount">0</p>
+        </div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-icon total">
+            <i class="fas fa-book"></i>
+        </div>
+        <div class="summary-content">
+            <p class="summary-label">Total Allotments</p>
+            <p class="summary-value" id="totalCount">0</p>
+        </div>
+    </div>
+</div>
+
+<!-- View Details Modal -->
+<div class="modal" id="viewModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Allotment Details</h2>
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="detail-row">
+                <label>Book Name</label>
+                <p id="detailBookName"></p>
+            </div>
+            <div class="detail-row">
+                <label>Student Email</label>
+                <p id="detailStudentEmail"></p>
+            </div>
+            <div class="detail-row">
+                <label>Subscription Type</label>
+                <p id="detailSubscription"></p>
+            </div>
+            <div class="detail-row">
+                <label>Start Date</label>
+                <p id="detailStartDate"></p>
+            </div>
+            <div class="detail-row">
+                <label>End Date</label>
+                <p id="detailEndDate"></p>
+            </div>
+            <div class="detail-row">
+                <label>Allotment Date</label>
+                <p id="detailAllotmentDate"></p>
+            </div>
+            <div class="detail-row">
+                <label>Status</label>
+                <p id="detailStatus"></p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-close">Close</button>
+        </div>
+    </div>
+</div>
 <?php render_footer(); ?>

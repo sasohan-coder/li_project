@@ -1,0 +1,73 @@
+@import url('subscription-styles.css');
+
+/* Status Badges */
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.status-badge.active {
+    background: rgba(0, 255, 157, 0.1);
+    color: var(--accent-green);
+    border: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+.status-badge.expired {
+    background: rgba(255, 71, 87, 0.1);
+    color: var(--accent-red);
+    border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.status-badge i { font-size: 0.6rem; }
+
+.subscription-badge {
+    background: rgba(0, 242, 255, 0.1);
+    color: var(--primary-glow);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* Summary Cards */
+.summary-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.summary-card {
+    background: var(--bg-card);
+    border: var(--glass-border);
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.summary-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.summary-icon.active { background: rgba(0, 255, 157, 0.1); color: var(--accent-green); }
+.summary-icon.expired { background: rgba(255, 71, 87, 0.1); color: var(--accent-red); }
+.summary-icon.total { background: rgba(0, 242, 255, 0.1); color: var(--primary-glow); }
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk';
+    color: #fff;
+}

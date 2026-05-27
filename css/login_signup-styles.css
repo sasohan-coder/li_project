@@ -1,0 +1,85 @@
+:root {
+    --bg-dark: #050509;
+    --primary-glow: #00f2ff;
+    --secondary-glow: #bd00ff;
+    --text-main: #ffffff;
+    --text-muted: #cbd5e1;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Public Sans', sans-serif;
+    background-color: var(--bg-dark) !important;
+    background-image:
+            radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.15) 0%, transparent 40%);
+    color: var(--text-main) !important;
+    min-height: 100vh;
+}
+
+/* Override Bootstrap Card */
+.card {
+    background: rgba(30, 30, 50, 0.6) !important;
+    backdrop-filter: blur(15px);
+    border: var(--glass-border) !important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
+}
+
+.card-body {
+    padding: 2.5rem;
+}
+
+/* Logo Area */
+.app-brand-text {
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.app-brand-logo svg {
+    fill: var(--primary-glow);
+}
+
+/* Typography */
+h4 { color: #fff !important; font-family: 'Space Grotesk', sans-serif; }
+p, label { color: var(--text-muted) !important; }
+
+/* Inputs */
+.form-control {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
+
+.form-control:focus {
+    border-color: var(--primary-glow) !important;
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-glow) !important;
+    border-color: var(--primary-glow) !important;
+    color: #000 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #fff !important;
+    box-shadow: 0 0 20px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+/* Links */
+a { color: var(--primary-glow) !important; }
+a:hover { text-decoration: underline; text-shadow: 0 0 5px var(--primary-glow); }
+
+/* Input Group Text (Eye Icon) */
+.input-group-text {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-left: none !important;
+    color: var(--text-muted) !important;
+}
