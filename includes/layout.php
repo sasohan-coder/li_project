@@ -66,6 +66,8 @@ function render_header(string $title): void
             'purchase.php' => 'css/purchase-styles.css',
             'vendor.php' => 'css/vendor-styles.css',
             'subscription.php' => 'css/subscription-styles.css',
+            'chatbot.php' => 'css/chatbot-styles.css',
+            'recommendations.php' => 'css/recommendations-styles.css',
         ];
         $style = $style_map[$page] ?? 'css/common.css';
         ?>
@@ -136,6 +138,14 @@ function render_header(string $title): void
             <a href="subscription.php" class="nav-item <?= $page === 'subscription.php' ? 'active' : '' ?>">
                 <i class="fas fa-file-invoice"></i>
                 <span>Subscription Type</span>
+            </a>
+            <a href="recommendations.php" class="nav-item <?= $page === 'recommendations.php' ? 'active' : '' ?>">
+                <i class="fas fa-robot"></i>
+                <span>Book Recommendations</span>
+            </a>
+            <a href="chatbot.php" class="nav-item <?= $page === 'chatbot.php' ? 'active' : '' ?>">
+                <i class="fas fa-comments"></i>
+                <span>AI Chatbot</span>
             </a>
         </nav>
 
